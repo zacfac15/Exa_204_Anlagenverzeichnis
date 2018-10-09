@@ -1,12 +1,39 @@
 package GUI;
 
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.TableColumn;
+
 public class AnlageGUI extends javax.swing.JFrame
 {
+
+  private String[] header =
+  {
+    "Bezeichnug", "AK", "Inbetr.na", "ND", "bish. ND", "AfA bisher", "Wert vor ...", "AfA d.J.", "BW 31.12"
+  };
 
   public AnlageGUI()
   {
     initComponents();
+    initTable();
   }
+
+  public void initTable()
+  {
+    int[] colWidth =
+    {
+      90, 90, 90, 90, 90, 90, 90, 90, 90
+    };
+    DefaultTableColumnModel dtcm = new DefaultTableColumnModel();
+
+    for (int i = 0; i < header.length; i++)
+    {
+      TableColumn tc = new TableColumn(i, colWidth[i]);
+      tc.setHeaderValue(header[i]);
+      dtcm.addColumn(tc);
+    }
+    // jtAnlage.setModel();
+    jtAnlage.setColumnModel(dtcm);
+  } 
 
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -22,7 +49,7 @@ public class AnlageGUI extends javax.swing.JFrame
     jLabel2 = new javax.swing.JLabel();
     jLabel3 = new javax.swing.JLabel();
     jScrollPane1 = new javax.swing.JScrollPane();
-    jTable1 = new javax.swing.JTable();
+    jtAnlage = new javax.swing.JTable();
 
     jLabel5.setText("jLabel5");
 
@@ -50,7 +77,7 @@ public class AnlageGUI extends javax.swing.JFrame
 
     getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-    jTable1.setModel(new javax.swing.table.DefaultTableModel(
+    jtAnlage.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][]
       {
         {null, null, null, null},
@@ -63,7 +90,7 @@ public class AnlageGUI extends javax.swing.JFrame
         "Title 1", "Title 2", "Title 3", "Title 4"
       }
     ));
-    jScrollPane1.setViewportView(jTable1);
+    jScrollPane1.setViewportView(jtAnlage);
 
     getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -72,7 +99,7 @@ public class AnlageGUI extends javax.swing.JFrame
 
   private void onUpdate(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onUpdate
   {//GEN-HEADEREND:event_onUpdate
-    
+
   }//GEN-LAST:event_onUpdate
 
   public static void main(String args[])
@@ -131,6 +158,6 @@ public class AnlageGUI extends javax.swing.JFrame
   private javax.swing.JLabel jLabel5;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTable jTable1;
+  private javax.swing.JTable jtAnlage;
   // End of variables declaration//GEN-END:variables
 }
