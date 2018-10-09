@@ -1,11 +1,13 @@
 package GUI;
 
+import code.AnlageModel;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
 
 public class AnlageGUI extends javax.swing.JFrame
 {
 
+  private AnlageModel am = new AnlageModel();
   private String[] header =
   {
     "Bezeichnug", "AK", "Inbetr.na", "ND", "bish. ND", "AfA bisher", "Wert vor ...", "AfA d.J.", "BW 31.12"
@@ -31,7 +33,7 @@ public class AnlageGUI extends javax.swing.JFrame
       tc.setHeaderValue(header[i]);
       dtcm.addColumn(tc);
     }
-    // jtAnlage.setModel();
+     jtAnlage.setModel(am);
     jtAnlage.setColumnModel(dtcm);
   } 
 

@@ -5,13 +5,39 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.table.AbstractTableModel;
 
-public class AnlageModel
+public class AnlageModel extends AbstractTableModel
 {
 
-  private ArrayList<Anlage> anlagen = new ArrayList<>();
+  private List<Anlage> anlagen = new LinkedList<>();
   private int year;
+
+  @Override
+  public int getRowCount()
+  {
+    return anlagen.size();
+  }
+
+  @Override
+  public int getColumnCount()
+  {
+    return 9;
+  }
+
+  @Override
+  public Object getValueAt(int rowIndex, int columnIndex)
+  {
+     Anlage a = anlagen.get(rowIndex);
+     
+     switch(columnIndex)
+     {
+       case 0: return 0;
+       default : return 0;
+     }
+  }
 
   public void addAnlage(Anlage a)
   {
