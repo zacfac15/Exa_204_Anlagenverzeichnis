@@ -2,39 +2,27 @@ package GUI;
 
 import code.AnlageModel;
 
-
 import code.TableCellRenderer;
 
 import javax.swing.JOptionPane;
 
+public class AnlageGUI extends javax.swing.JFrame {
 
+    private AnlageModel model = new AnlageModel();
 
-public class AnlageGUI extends javax.swing.JFrame
-{
+    public AnlageGUI() {
+        initComponents();
+        jtAnlage.setModel(model);
+        jtAnlage.setDefaultRenderer(Object.class, new TableCellRenderer());
+        try {
+            model.loadFile();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
-  private AnlageModel model = new AnlageModel();
-
-  public AnlageGUI()
-  { 
-    initComponents();
-    jtAnlage.setModel(model);
-    jtAnlage.setDefaultRenderer(Object.class, new TableCellRenderer());
-    try
-    {
-      model.loadFile();
     }
-    catch (Exception e)
-    {
-      JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    
 
-  }
-
-  
-
-
-@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents()
   {
