@@ -1,43 +1,40 @@
 package GUI;
 
 import code.AnlageModel;
-import javax.swing.table.DefaultTableColumnModel;
-import javax.swing.table.TableColumn;
+
+
+import code.TableCellRenderer;
+
+import javax.swing.JOptionPane;
+
+
 
 public class AnlageGUI extends javax.swing.JFrame
 {
 
-  private AnlageModel am = new AnlageModel();
-  private String[] header =
-  {
-    "Bezeichnug", "AK", "Inbetr.na", "ND", "bish. ND", "AfA bisher", "Wert vor ...", "AfA d.J.", "BW 31.12"
-  };
+  private AnlageModel model = new AnlageModel();
 
   public AnlageGUI()
-  {
+  { 
     initComponents();
-    initTable();
+    jtAnlage.setModel(model);
+    jtAnlage.setDefaultRenderer(Object.class, new TableCellRenderer());
+    try
+    {
+      model.loadFile();
+    }
+    catch (Exception e)
+    {
+      JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+
   }
 
-  public void initTable()
-  {
-    int[] colWidth =
-    {
-      90, 90, 90, 90, 90, 90, 90, 90, 90
-    };
-    DefaultTableColumnModel dtcm = new DefaultTableColumnModel();
+  
 
-    for (int i = 0; i < header.length; i++)
-    {
-      TableColumn tc = new TableColumn(i, colWidth[i]);
-      tc.setHeaderValue(header[i]);
-      dtcm.addColumn(tc);
-    }
-     jtAnlage.setModel(am);
-    jtAnlage.setColumnModel(dtcm);
-  } 
 
-  @SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents()
   {
@@ -104,51 +101,11 @@ public class AnlageGUI extends javax.swing.JFrame
 
   }//GEN-LAST:event_onUpdate
 
-  public static void main(String args[])
-  {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try
-    {
-      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-      {
-        if ("Nimbus".equals(info.getName()))
-        {
-          javax.swing.UIManager.setLookAndFeel(info.getClassName());
-          break;
-        }
-      }
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(() -> {
+            new AnlageGUI().setVisible(true);
+        });
     }
-    catch (ClassNotFoundException ex)
-    {
-      java.util.logging.Logger.getLogger(AnlageGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    catch (InstantiationException ex)
-    {
-      java.util.logging.Logger.getLogger(AnlageGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    catch (IllegalAccessException ex)
-    {
-      java.util.logging.Logger.getLogger(AnlageGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    catch (javax.swing.UnsupportedLookAndFeelException ex)
-    {
-      java.util.logging.Logger.getLogger(AnlageGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
-
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable()
-    {
-      public void run()
-      {
-        new AnlageGUI().setVisible(true);
-      }
-    });
-  }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JComboBox<String> cbYear;
